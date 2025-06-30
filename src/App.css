@@ -1,7 +1,11 @@
 .app {
   max-width: 1200px;
+  margin: 0 auto;
   padding: 2rem;
-  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .app-header {
@@ -109,9 +113,31 @@
 
 .users-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
   padding: 1rem 0;
+  /* Default: 1 column for mobile */
+  grid-template-columns: 1fr;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) {
+  .users-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .users-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large desktop: 4 columns (optional) */
+@media (min-width: 1400px) {
+  .users-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .no-users {

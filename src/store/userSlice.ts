@@ -7,11 +7,7 @@ interface UsersState {
   error: string | null;
 }
 
-export const fetchUsers = createAsyncThunk <
-  User[], // return type
-  void,   // argument type
-  { rejectValue: string } // thunkAPI type
->(
+export const fetchUsers = createAsyncThunk <User[], void,{ rejectValue: string }> (
   'users/fetchUsers',
   async (_, { rejectWithValue }) => {
     try {

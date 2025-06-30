@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import { fetchUsers, clearError } from "./store/userSlice";
 import UserCard from "./components/UserCard";
+import CryptoPrices from "./components/CryptoPrices";
 import "./App.css";
 
 function App() {
@@ -51,6 +52,11 @@ function App() {
           Refresh Users
         </button>
       </header>
+
+      {/* WebSocket Demo Section */}
+      <section className="websocket-demo">
+        <CryptoPrices />
+      </section>
 
       <main className="users-container">
         {users.length === 0 ? (

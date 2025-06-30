@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../types/User';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import type { User } from "../types/User";
 
 interface UsersState {
   users: User[];
@@ -7,22 +7,23 @@ interface UsersState {
   error: string | null;
 }
 
-export const fetchUsers = createAsyncThunk <User[], void,{ rejectValue: string }> (
-  'users/fetchUsers',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/users');
-      if (!response.ok) {
-        throw new Error('Failed to fetch users');
-      }
-      return await response.json();
-    } catch (error) {
-      return rejectWithValue(
-        error instanceof Error ? error.message : 'Unknown error'
-      );
+export const fetchUsers = createAsyncThunk<
+  User[],
+  void,
+  { rejectValue: string }
+>("users/fetchUsers", async (_, { rejectWithValue }) => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    if (!response.ok) {
+      throw new Error("Failed to fetch users");
     }
+    return await response.json();
+  } catch (error) {
+    return rejectWithValue(
+      error instanceof Error ? error.message : "Unknown error"
+    );
   }
-);
+});
 
 const initialState: UsersState = {
   users: [],
@@ -31,7 +32,7 @@ const initialState: UsersState = {
 };
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
     clearError: (state) => {
@@ -44,13 +45,13 @@ const usersSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
+      .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
         state.users = action.payload;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || 'Failed to fetch users';
+        state.error = action.payload || "Failed to fetch users";
       });
   },
 });

@@ -2,10 +2,10 @@
   "files": [],
   "references": [
     {
-      "path": "./my-redux-app/tsconfig.app.json"
+      "path": "./tsconfig.app.json"
     },
     {
-      "path": "./my-redux-app/tsconfig.node.json"
+      "path": "./tsconfig.node.json"
     }
   ]
 }

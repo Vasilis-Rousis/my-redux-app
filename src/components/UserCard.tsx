@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "../types/User";
+import type { User } from "../types/User";
 
 interface UserCardProps {
   user: User;
@@ -7,16 +7,22 @@ interface UserCardProps {
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
-      <h3 className="font-bold">{user.name}</h3>
-      <p className="text-gray-600">@{user.username}</p>
-      <p className="text-sm">{user.email}</p>
-      <div className="mt-2">
+    <div className="user-card">
+      <h3>{user.name}</h3>
+      <p className="username">@{user.username}</p>
+      <p className="email">{user.email}</p>
+      <div className="details">
         <p>
           <strong>Company:</strong> {user.company.name}
         </p>
         <p>
           <strong>City:</strong> {user.address.city}
+        </p>
+        <p>
+          <strong>Phone:</strong> {user.phone}
+        </p>
+        <p>
+          <strong>Website:</strong> {user.website}
         </p>
       </div>
     </div>
